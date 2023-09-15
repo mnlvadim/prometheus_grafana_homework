@@ -1,0 +1,62 @@
+apiVersion: 1
+groups:
+    - orgId: 1
+      name: "1"
+      folder: BASIC ALERT RULES
+      interval: 10s
+      rules:
+        - uid: faddf938-d19b-40d2-9fb5-2b007ecf9029
+          title: Нагрузка на ЦПУ превысила норму
+          condition: B
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: f19b0048-85b8-4161-a484-238b34282708
+              model:
+                editorMode: code
+                expr: '100-(avg(irate(node_cpu_seconds_total{mode="idle"}[30m])) * 100) '
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: B
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 80
+                            - 101
+                        type: within_range
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - A
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    name: Expression
+                    type: __expr__
+                    uid: __expr__
+                expression: ""
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: B
+                type: classic_conditions
+          dashboardUid: bb3168e9-f9c5-43ba-bfb8-50fa8e4724cd
+          panelId: 4
+          noDataState: NoData
+          execErrState: Error
+          for: 30s
+          annotations:
+            __dashboardUid__: bb3168e9-f9c5-43ba-bfb8-50fa8e4724cd
+            __panelId__: "4"
+            summary: Нагрузка на ЦПУ превысила норму
+          isPaused: false

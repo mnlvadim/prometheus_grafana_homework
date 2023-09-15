@@ -1,0 +1,17 @@
+{
+	"ulid": "01HACX1FK7RB052NC376GMYZSV",
+	"minTime": 1694759683875,
+	"maxTime": 1694764800000,
+	"stats": {
+		"numSamples": 98826,
+		"numSeries": 1248,
+		"numChunks": 1248
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HACX1FK7RB052NC376GMYZSV"
+		]
+	},
+	"version": 1
+}
